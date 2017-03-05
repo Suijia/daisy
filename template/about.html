@@ -1,0 +1,35 @@
+{% extends "BasePage.html" %}
+
+{% block head-extend %}
+    <title>关于&nbsp;|&nbsp;一个科幻迷收藏私货的地方</title>
+    <!-- Custom styles for this page -->
+    <link href='{{static_url("css/about.css")}}' rel="stylesheet">
+{% end %}
+
+{% block content-extend %}
+    <article>
+        <h4>这里大概,是一个收纳科幻信息的网站……</h4>
+        <p>由于刚刚起步，以及作者布丁很弱的关系，本站还很粗糙。暂时就是几个公众号的RSS吧……</p>
+        <p>其实还是有其他内容源的的，不过它们更新频率太低，常常被时间线淹没。</p>
+        <p>首页的背后，有只小爬虫冒着被封 ip 的风险，东逛逛西瞅瞅，吭哧吭哧地把科幻消息抱过来，按时间线更新。
+        <p>如果，你时不时想概览一下不存在日报、幻象文库、科幻世界、机器之心、大都会新闻……最近都在说啥，那就逛逛吧。</p>
+        <p>点击各篇文章标题即可跳转到原文，点击内容源标签即可查看指定源。</p>
+        <p>如果用手机查看，就类似微信公众号的查看历史消息了，推荐在电脑上浏览。</p>
+        <h4>下一步计划:</h4>
+        <p><strong>* 时间线：</strong>如果看到合适的内容源，会添加到时间线中.</p>
+        <p><strong>* 红人馆：</strong>准备「张贴」一些出没在科幻圈的人类，就像高考后的「光荣榜」，包括但不限于科幻作家、科幻迷、神奇生物以及他们之间的互动和联系。</p>
+        <p><strong>* 随堂考：</strong>一言以蔽之，在线答题。以前混学校科幻社团的时候，每年都有各个社团摆摊吆喝，发发小礼品，装作很热闹的活动。也不知道怎么起得头，别人家都是唱唱跳跳的，科幻社团常常都是……看剧照猜科幻电影，读台词猜科幻小说，看 XXX猜科幻 XXX……而且都是印在纸上或者PPT……后来有魄力的高校还举办了北京高校科幻知识竞赛。既然大家这么喜欢答题（误），那就做个网页版吧……省省纸和 PPT。</p>
+        <p><strong>* 补习班：</strong>我还没想好……</p><br>
+        <p><strong>另：</strong>以前没有完整地建过站,最近学着玩了一下,还是蛮有意思的 ~>.<~ 附上 github 地址:<a href="https://github.com/Suijia/daisy">https://github.com/Suijia/daisy</a></p>
+        <p><strong>反(tu)馈(cao):</strong>如果你有什么要对布丁说,请使劲戳<a href="/feedback">~反馈~</a></p>
+        <p class="text-right">by 会看一点科幻，能砌一点代码的布丁
+            <br>2016.8.22
+        </p>
+    </article>
+{% end %}
+
+{% block cnzz%}
+    <p>
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260133967'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1260133967%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+    </p>
+{% end %}

@@ -1,0 +1,46 @@
+body {
+    font-family: "Arial Black","Helvetica Neue", Helvetica, sans-serif;
+    background-color: rgb(245,245,245);
+}
+.content {
+    max-width: 550px;
+    max-height: 150px;
+    left: 0;
+     right: 0;
+    bottom: 0;
+    top: 0;
+    position: absolute;
+    margin: auto;
+}
+
+img {
+    width: 150px;
+    margin-left: 35%;
+}
+
+.description {
+    font-size: 30px;
+    margin: 20px 10px;
+    text-align: center;
+    min-width: 350px;
+}
+a {
+    text-decoration:none ;
+    color: #000000;
+}
+a:hover, a:active {
+    color: rgba(0,0,0,0.5);
+}
+span {
+    font-size: 18px;
+}
+@media screen and (min-width: 678px){
+    img {
+        float: left;
+        margin-left: 0;
+    }
+    .description {
+        float: left;
+    }
+}
+

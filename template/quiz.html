@@ -1,0 +1,85 @@
+{% extends "BasePage.html" %}
+
+{% block head-extend %}
+    <title>随堂考&nbsp;|&nbsp;一个科幻迷收藏私货的地方</title>
+    <!-- Custom styles for this page -->
+    <link href='{{static_url("css/quiz.css")}}' rel="stylesheet">
+{% end %}
+
+
+{% block content-extend %}
+    <div class="row">
+    <div class="exam_paper">
+        <h3 class="exam_title">2016 科幻迷入圈资格证全国统一考试（卷42）</h3>
+
+        {% if not is_over %}
+            <p class="current_count">试题<span id="quiz_count">1</span>/<span id="quiz_total">{{total}}</span></p>  <!--当前题目-->
+            <form method="post" action="/quiz">
+                {% for quiz_index in range(0, total) %}
+                    <div id="quiz_div_{{quiz_index}}" class="one_quiz">
+                        <p>{{quizzes[quiz_index].question}}</p>
+                        <img src="{{quizzes[quiz_index].image}}" alt="The image is loading...">
+                        <ul>
+                            {% for choice_index in range(0, len(quizzes[quiz_index].choice)) %}
+                            <li data-index="{{choice_index}}" class="choice">
+                                <p class="choice_content">{{quizzes[quiz_index].choice[choice_index]}}</p>
+                            </li>
+                            {% end %}
+                        </ul>
+                        <!--这里放两个隐藏的控件,一个存问题id, 一个存用户选择的答案-->
+                        <input type="text" value="{{quizzes[quiz_index].quiz_id}}" name="text_quiz_id" hidden>
+                        <input type="text" value="-1" name="text_answer_id" id="text_answer_id_{{quiz_index}}" hidden>
+
+                    </div>
+
+                {% end %}
+                <button type="submit" id="submit_button" class="btn btn-primary">答完了? 交卷吧</button>
+            </form>
+        {% else %}
+            <p id="result">恭喜!&nbsp;你在本次考试中答对了<p id="score">{{correct_count}}</p>道题!</p>
+        {% end %}
+    </div>
+    </div>
+{% end %}
+
+{% block script-end-extend %}
+    <script>
+        $(document).ready(function () {
+
+                $('.choice').on('mouseover', function(){
+                    $(this).css({'background-color':'#e1e1e1'});
+                });
+                $('.choice').on('mouseout', function(){
+                    $(this).css({'background-color':'#fff'});
+                })
+
+                $('.choice').click(function () {
+                    $('.choice').removeAttr('style').off('mouseout mouseover');
+                    $(this).css({'background-color':'#c1c1c1', 'font-weight': '600'});
+
+                    $(this).parents('.one_quiz').children("input[name='text_answer_id']").attr('value',$(this).index().toString());
+
+                    var count = parseInt($('#quiz_count').html());
+                    var quiz_total = parseInt($('#quiz_total').html());
+
+                    if (count == quiz_total){
+                        $('button').css({'display':'block'})
+                    } else if(count < quiz_total){
+                        count = count + 1;
+                        $('#quiz_count').html(count);
+
+                        var $this = $(this).parents('.one_quiz')
+                        setTimeout(function(){$this.css({'display':'none'});},500);
+                        var $that = $this.next()
+                        setTimeout(function(){$that.css({'display':'block'});},500);
+
+                        //$(this).parents('.one_quiz').css({'display':'none'});
+                        //$(this).parents('.one_quiz').next().css({'display':'block'});
+                    }
+                });
+        });
+
+    </script>
+{% end %}
+
+

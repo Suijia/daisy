@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=0.9">
+        <!-- The above 3 meta tags *must* come first in the head-->
+        <meta name="description" content="the space where sci-fi fan stores collections,一个科幻迷收藏私货的地方,关注科幻动态,中文科幻圈,聚合科幻内容">
+        <meta name="keyword" content="中文科幻,科幻公众号,科幻聚合,sci-fi">
+        <meta name="author" content="pudding">
+        <link rel="icon" href='{{static_url("images/icon.png")}}'>
+        <link href='{{static_url("css/bootstrap.min.css")}}' rel="stylesheet">
+        <link href='{{static_url("css/index.css")}}' rel="stylesheet">
+        <script src='{{static_url("js/base.js")}}'></script>
+        {% block head-extend %}{% end %}
+
+    </head>
+    <body>
+        {% block above-header %}{% end %}
+        <header>
+            <!-- Banner
+            ================================================== -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 banner">
+                        <a href="/index">
+                        <img src='{{static_url("images/banner.png")}}' class="banner" alt="PUDDING.COM"/>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="sub-title text-right">______一个科幻迷收藏私货的地方</p>
+                    </div>
+                </div>
+            </div><!--/.container for Banner-->
+        </header>
+        {% block carousel %}{% end %}
+
+        <!-- Navbar
+        ================================================== -->
+        <div class="nav-wrapper">
+            <nav class="navbar-inverse fixed">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/index">首页&nbsp;|&nbsp;时间线</a></li>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="/quiz">随堂考</a></li>
+                            <li><a href="/about">关于</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">开发中……<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li class="disabled"><a href="#">红人馆</a></li>
+                                    <li class="disabled"><a href="#">补习班</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li class="dropdown-header">还没写好别点了!</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><!--/#navbar-->
+                </div><!--/.container-->
+            </nav>
+        </div><!--.nav-wrapper-->
+
+
+        <!-- Main content
+        ================================================== -->
+        <div class="container">
+            {% block content-extend %}{% end %}
+        </div><!--/.container-->
+
+         <!-- PAGER & FOOTER
+        ================================================== -->
+        <div class="container">
+            <hr>
+            {% block pager %}{% end%}
+            <!-- FOOTER-->
+            <footer>
+                <div class="text-center">
+                    <p>&copy; 2016 Pudding | All stories, art, and posts are the copyright of their respective authors.</p>
+                    {% block cnzz %}{% end%}
+                </div>
+            </footer>
+        </div>
+
+        <!-- Core JavaScript
+        ================================================== -->
+        <script src='{{static_url("js/jquery.min.js")}}'></script>
+        <script src='{{static_url("js/bootstrap.min.js")}}'></script>
+        {% block script-end-extend %}{% end %}
+    </body>
+</html>
+
+
+
+
+

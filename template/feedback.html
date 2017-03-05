@@ -1,0 +1,70 @@
+{% extends "BasePage.html" %}
+
+{% block head-extend %}
+    <title>反馈&nbsp;|&nbsp;一个科幻迷收藏私货的地方</title>
+    <!-- Custom styles for this page -->
+    <link href='{{static_url("css/about.css")}}' rel="stylesheet">
+{% end %}
+
+{% block content-extend %}
+    <article>
+        <h4>布局还在设计中……</h4>
+        <div align="center" style="width: 100%; display: inline-block;">
+            <input type="text" style="width:400px; margin-bottom: 10px" name="title" id="title" placeholder="标题"><br>
+            <textarea name="content" id="content" style="width: 400px; resize: none" rows="8" placeholder="写下您的反馈意见或想说的话,布丁会努力改进的!"></textarea><br>
+            <input type="text" style="width:400px;" name="email" id="email" placeholder="请留下您的Email, 方便联系">
+            <div style="background: transparent; text-align: center;">
+                <button id="feedback" type="button" style="margin-top: 10px" onclick="feedbackSubmit()">反馈</button>
+            </div>
+        </div>
+    </article>
+{% end %}
+
+{% block script-end-extend %}
+    <script type="text/javascript">
+        function feedbackSubmit() {
+            var email = $("#email").val();
+            var title = $("#title").val();
+            var content = $("#content").val();
+
+            console.log("email: " + email);
+            console.log("content: " + content);
+            console.log("title: " + title);
+
+            if (title.length == 0) {
+              alert("写个标题吧");
+              return false;
+            }
+
+            if (content.length < 10) {
+              alert("多写几句吧TT");
+              return false;
+            }
+
+            if (email.length == 0 ||
+                    (!email.match(/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/))) {
+              alert("请填写正确的邮箱");
+              return false;
+            }
+
+            $.ajax({
+                url: '/feedback',
+                type: 'post',
+                data: {'email':email, 'title': title, 'content': content},
+                success: function(data) {
+                    console.log("success: " + data);
+                    if (data!="SUCC") {
+                        alert(data)
+                    } else {
+                        alert("布丁已经收到您的反馈,会尽快处理");
+                        window.history.back(-1);
+                    }
+                },
+                error: function() {
+                    alert("好像出了什么问题, 重试一次?")
+                }
+            });
+        }
+    </script>
+{% end %}
+

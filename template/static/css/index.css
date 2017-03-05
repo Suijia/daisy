@@ -1,0 +1,176 @@
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/*  set default text color */
+
+body {
+    position: relative;
+    min-width: 400px;
+    color: #222222;
+    background-color: #F8F8F8;
+    margin: 0;
+    padding: 0 0 40px 0; /*Padding below the footer*/
+    font-family: -apple-system,"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB",STHeiti,"Microsoft YaHei","Microsoft JhengHei","Source Han Sans SC","Noto Sans CJK SC","Source Han Sans CN","Noto Sans SC","Source Han Sans TC","Noto Sans CJK TC","WenQuanYi Micro Hei",SimSun,sans-serif;;
+}
+
+
+/* CUSTOMIZE THE BANNER
+-------------------------------------------------- */
+header {
+    background-color: #ffffff;
+}
+.banner {
+    padding: 0;
+}
+img.banner {
+    width: 100%;
+}
+p.sub-title {
+    color: #5E5E5E;
+    padding-right: 10px;
+}
+@media screen and (min-width: 992px) {
+    p.sub-title {
+        text-align: left;
+        margin-top: 23%;
+        font-size: 16px;
+    }
+}
+@media screen and (max-width: 767px) {
+    p.sub-title {
+        display: none;
+    }
+}
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+#myCarousel {
+    height: 240px; /* Declare heights because of positioning of img element */
+    background-image: url(../images/bg-img.png);
+    background-size: cover;
+    margin-bottom: 0;
+}
+.carousel-control {
+    width: 16%;
+}
+.carousel-inner {
+    height: inherit;
+}
+.carousel-inner > .item {
+    height: inherit;
+    text-align: center;
+    width: 100%;
+}
+.carousel .item p {
+    /*display: table-cell;
+    vertical-align: middle;
+*/
+    position: absolute;
+
+    top:50%;
+    transform: translateY(-50%);
+    right: 15%;
+    left: 15%;
+    /*块状元素的垂直居中*/
+    font-size: 16px;
+    z-index: 10;
+    color: #fff;
+}
+
+/* CUSTOMIZE THE NAVBAR
+--------------------------------------------------*/
+.nav-wrapper {
+    min-height: 50px;
+}
+
+.navbar-inverse {
+    z-index: 1000;
+    width: 100%;
+    min-height: 50px;
+}
+
+.nav.navbar-nav > li > a, .navbar-header > a.navbar-brand {
+        color: #ffffff;
+    }
+.nav.navbar-nav > li > a:hover, .navbar-header > a.navbar-brand:hover {
+        color: #9d9d9d;
+    }
+@media (min-width: 768px) {
+    .nav.navbar-nav > li > a {
+        font-size: 18px;
+    }
+}
+
+/* CUSTOMIZE THE CONTENT
+-------------------------------------------------- */
+
+/* Center align the text within the three columns below the carousel */
+/*#masonry {
+    padding-bottom: 40px;
+}*/
+
+@media (max-width: 767px) {
+    .one-article .thumbnail {
+        padding: 0;
+    }
+    .one-article {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+.one-article {
+    margin-bottom: 20px;
+}
+.one-article .thumbnail{
+    border: none;
+    padding-right: 0;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.caption h1 {
+    font-weight: normal;
+    font-size: 18px;
+    margin: 14px 5px;
+    /*height: 70px;*/
+}
+a#article-title {
+    text-decoration: none;
+    color: #353535;
+}
+a#article-title:hover, a#article-title:active {
+    color: #888888;
+}
+
+.source {
+    display: inline-block;
+    background-color: #000000;
+    margin: 5px;
+    padding: 1px 4px;
+    border-radius: 2px;
+    color: #FFFFFF;
+}
+.source > a {
+    color: #FFFFFF;
+}
+.source > a:hover,.source > a:active {
+    color: #9d9d9d;
+    text-decoration: none;
+}
+.time {
+    color: #BBBBBB;
+}
+.caption p{
+    margin: 10px 5px;
+    font-size: 16px;
+}
+.text-center a {
+    text-decoration: none;
+    color: rgba(13,126,173,1);
+}
+.text-center a:hover, .text-center a:active {
+    color: rgba(13,126,173,0.6);
+}
+
+
+
+

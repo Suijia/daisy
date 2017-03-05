@@ -1,0 +1,24 @@
+port: 80  # web 服务端口
+processNum: 20   # 并发进程数
+
+templatePath: template  # 模板文件的 path
+staticPath: template/static # static 文件的 path
+debug_user: DEBUG_USER
+default_profile: online
+email_password: ********
+ops_token: *****
+
+log:
+    access: logs/access.log
+    app: logs/app.log
+    mysql: logs/mysql.log
+    crawler: logs/crawler.log
+
+database:
+    database:   # 数据库相关配置
+    host: 127.0.0.1
+    port: 3306
+    username: pudding
+    password: *********
+    database: pudding
+    charset: utf8mb4

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <title>404-not-found</title>
+        <link rel="stylesheet" type="text/css" href='{{static_url("css/404.css")}}'>
+    </head>
+    <body>
+        <script type="text/javascript">
+            var delay = 2 ; // 设定跳转的时间
+            setInterval("refer()", 1000); // 启动1秒定时
+            function refer(){
+                if (delay <= 0) {
+                    location ='http://www.pudding.space'; // 设定跳转的链接地址
+                }
+            document.getElementById('show').innerHTML = "出错了," + delay + "秒后前往首页 ￣へ￣ "; // 显示倒计时
+            delay--; // 计数器递减
+            }
+        </script>
+        <div class="content">
+            <a href="http://www.pudding.space/">
+                <img src="../static/images/logo.png">
+                <p class="description">404 NOT FOUND >.< <br><span id="show">出错了,3秒后前往首页 ￣へ￣</span></p>
+            </a>
+        </div>
+
+    </body>
+</html>

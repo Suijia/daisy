@@ -1,0 +1,129 @@
+{% extends "BasePage.html" %}
+
+{% block head-extend %}
+    <title>Pudding.space&nbsp;|&nbsp;一个科幻迷收藏私货的地方</title>
+    <meta name="baidu-site-verification" content="N87LUqf5Wm" />
+    <!-- Custom styles for this page -->
+    <link href='{{static_url("css/index.css")}}' rel="stylesheet">
+{% end %}
+
+{% block above-header %}
+    <textarea id="coveranddocid" hidden>{{cover_str}}</textarea>
+{% end %}
+
+{% block carousel %}
+    <div id="myCarousel" class="carousel slide" data-interval="5000">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <div class="carousel-inner">
+            <div class="item active">
+              <p class="text-center">不仅仅是我们理解的平行宇宙，并行不悖。而是，有些宇宙还没有起源，有些宇宙已经快要老去了。
+              <br><br>by&nbsp;艾萨克·阿西莫夫&nbsp;&nbsp;《神们自己》</p>
+            </div>
+            <div class="item">
+               <p class="text-center">"那是自然的力量，无论是这阳光，还是从我身上滚过的火焰，都一样。我爱这力量。即使畏惧，仍然热爱。"
+               <br><br>by&nbsp;迟卉&nbsp;&nbsp;《向着天空生长的洞穴》</p>
+            </div>
+            <div class="item">
+              <p class="text-center">"当我走到人生的尽头，当我在弥留之际最后一次睁开眼睛，那时我所有的知性和记忆都消失在过去的深渊中，又回到童年纯真的感觉和梦幻之中，那就是量子玫瑰向我微笑的时候。"
+              <br><br>by&nbsp;刘慈欣&nbsp;&nbsp;《球状闪电》</p>
+            </div>
+        </div><!-- /.carousel-inner -->
+
+        <a class="left carousel-control" id="pudding-carousel-left" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" id="pudding-carousel-right" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+
+    </div><!-- /.myCarousel -->
+{% end %}
+
+{% block content-extend %}
+    <div class="row masonry" id="masonry">
+        {% for doc in docs %}
+        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 one-article">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h1 class="text-left">
+                        <a id="article-title" href="{{doc.detail_url}}" target="_blank">{{doc.title}}</a>
+                    </h1>
+                    <span class="source">
+                        <a href="/index?source={{doc.source}}">{{doc.source}}</a>&nbsp;|
+                        <a href="/index?source={{doc.source}}&channel={{doc.channel}}">{{doc.channel}}</a>
+                    </span>
+                    <span class="time">{{doc.publish_str}}</span>
+                </div>
+                <div class="pudding-article-img" id="frameimg{{doc.docid}}"></div>
+                <script type="text/javascript" >showImg("{{doc.cover}}", "{{doc.docid}}")</script>
+                <div class="caption">
+                    <p class="text-justify abstract">
+                        {{doc.snippet}}<br>
+                    </p>
+                </div>
+            </div>
+        </div><!-- /.one-article-->
+        {% end %}
+    </div><!--/.row-->
+{% end %}
+
+{% block pager %}
+    <div id="npage" hidden><a href="/index?{{next_url}}">下一页</a></div>
+{% end %}
+
+{% block script-end-extend %}
+    <script src='{{static_url("js/masonry.pkgd.min.js")}}'></script>
+    <script src='{{static_url("js/jquery.infinitescroll.js")}}'></script>
+    <script src='{{static_url("js/imagesloaded.pkgd.min.js")}}'></script>
+    <!--瀑布流-->
+    <script type="text/javascript">
+        $(function(){
+            console.log("begin ");
+            var $container = $('#masonry');
+            //图片读完才开始执行
+            $container.imagesLoaded(function() {
+                console.log("image done ----");
+                new Masonry( document.getElementById('masonry'),{itemSelector:'.one-article'} );
+            });
+
+            $container.infinitescroll(
+                {
+                    navSelector : '#npage',
+                    nextSelector : '#npage a',
+                    itemSelector : '.one-article',
+                    debug : true //启用调试信息
+                },
+                function(arrayOfNewElems){
+                    $.getScript('static/js/base.js');
+                    console.log("begin 555555555");
+                    console.log(""+arrayOfNewElems);
+                    $container.imagesLoaded( function() {
+                        console.log("image done3333 ----");
+                        new Masonry( document.getElementById('masonry'),{itemSelector:'.one-article'} );
+                        var coveranddocid = document.getElementById("coveranddocid");
+                        console.log("coveranddocid" + coveranddocid.value);
+                        console.log("coveranddocid" + coveranddocid.value.length);
+                        docCoverValue = coveranddocid.value;
+                        docCovers = docCoverValue.split("DOC_FLAG");
+                        for (i=0; i < docCovers.length;i++) {
+                            covers = docCovers[i].split("COVER_FLAG");
+                            if (covers.length == 2) {
+                                console.log(covers[0] + ":" + covers[1]);
+                                showImg(covers[1], covers[0])
+                            }
+                        }
+                    });
+                    $(arrayOfNewElems).appendTo('#container');
+                }
+            );
+        });
+    </script>
+{% end %}

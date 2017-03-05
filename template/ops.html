@@ -1,0 +1,75 @@
+{% extends "BasePage.html" %}
+
+
+{% block head-extend %}
+    <title>考题录入&nbsp;|&nbsp;一个科幻迷收藏私货的地方</title>
+    <!-- Custom styles for this page
+    <link href='{{static_url("css/quiz.css")}}' rel="stylesheet"> -->
+    <style>
+         body {
+            text-align: center;
+        }
+        #ops_bos {
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 300px;
+            text-align: left;
+        }
+        .upload_file {
+            margin: 10px ;
+            width: 100%;
+        }
+    </style>
+{% end %}
+
+
+{% block content-extend %}
+        <div id="ops_bos">
+            <div class="input-group upload_file">
+                <span class="input-group-addon">Token</span>
+                <input id="token" type="text" value="" class="form-control" placeholder="type your token here">
+            </div>
+            <input id="avatar_obj" name="file" type="file" onchange="selectFile(this)" class="upload_file">
+            <button id="updateAccount" type="submit" class="btn btn-primary upload_file" onclick="updateAccount()">上传</button>
+        </div>
+
+{% end %}
+
+{% block script-end-extend %}
+<script type="text/javascript">
+    var file_obj = '';
+    function selectFile(file){
+        if(!file.files || !file.files[0]){
+            return;
+        }
+        var reader = new FileReader();
+        reader.onload = function(evt){
+            file_obj = evt.target.result;
+        };
+        reader.readAsDataURL(file.files[0]);
+    }
+
+    function updateAccount(){
+        var token = $("#token").val();
+        $.ajax({
+            url: "/ops",
+            type:'post',
+            data : {'file_obj': file_obj, 'token': token},
+            success: function(data) {
+                var result = jQuery.parseJSON(data);
+                if (result['ok']) {
+                    alert(result['desc']);
+                } else {
+                    alert(result['desc']);
+                }
+            },
+            error: function() {
+              alert("更新失败");
+            }
+        });
+        return false;
+    }
+</script>
+{% end %}
+
+

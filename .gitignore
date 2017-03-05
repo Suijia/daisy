@@ -1,0 +1,12 @@
+*.log
+*.pyc
+.idea
+*.DS_Store*
+*.iml
+*.pem
+_gsdata_
+build
+logs
+conf
+content-design
+daisy.tgz

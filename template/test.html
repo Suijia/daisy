@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <title>test</title>
+        <link href='{{static_url("css/bootstrap3.0.1.css")}}' rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href='{{static_url("css/test.css")}}'>
+        <script src='{{static_url("js/base.js")}}'></script>
+    </head>
+    <body>
+        <div class="container" id="main">
+            <div class="row clearfix"> <!--header-->
+                <div class="col-md-12 column">
+                    <div class="row clearfix" id="banner"> <!--banner-->
+                        <div class="col-md-2 column" id="logo-container">
+                            <a href="/test"><img alt="140x140" src="../static/images/site-logo.jpg" id="site-logo" /></a>
+                        </div>
+                        <div class="col-md-4 column" id="title-container">
+                            <p id="site-index">
+                                PUDDING.SPACE
+                            </p>
+                        </div>
+                        <div class="col-md-6 column" id="description-container">
+                            <p id="site-description">
+                                ________你所记的，都是假的。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row clearfix"> <!--navigator-->
+                        <div class="col-md-12 column" id="nav">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                     <a href="#">首页|Timeline</a>
+                                </li>
+                                <li class="disabled">
+                                     <a href="#">科幻圈</a>
+                                </li>
+                                <li class="disabled">
+                                     <a href="#">考场</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix" id="feature-container">
+                <div class="col-md-8 column" id="image-show">
+                    <img src="../static/images/img-show-eg-2.jpg">
+                </div>
+                <div class="col-md-4 column" id="hot-article">
+                    <h3>最新内容</h3>
+                    <ul id="article-list">
+                        {% for i in range(1, 4) %}
+                        <li id="article-item">
+                            <img src="../static/images/site-logo.jpg" id="new-content"><a href="#"><h4 id="hot-article-title">It’s Time </h4></a>
+                        </li>
+                        {% end %}
+                    </ul>
+                </div>
+            </div>
+
+            {% for doc in docs %}
+            <div class="row clearfix" id="article"> <!--main-->
+                <div class="col-md-4 column" id="container-img">
+                    <script type="text/javascript">showImg("{{ doc.cover}}", {{doc.docid}})</script>
+                </div>
+                <div class="col-md-8 column" id="article-content">
+                    <h4>
+                        <a href="{{doc.detail_url}}">
+                        {{doc.title}}
+                        </a>
+                    </h4>
+                    <span class="label label-default">
+                        <a style="color: #edff18" href="/test?source={{doc.source}}">{{doc.source}}</a> -
+                        <a style="color: #edff18" href="/test?source={{doc.source}}&channel={{doc.channel}}">{{doc.channel}}</a></span>
+                    <p id="abstract">
+                        {{doc.snippet}}<br>[{{doc.publish_str}}]
+                    </p>
+                </div>
+            </div>
+            <hr>
+            {% end%}
+
+            <p class="text-center">
+                {% if len(pre_url) > 0 %}
+                <a href="/test?{{pre_url}}">上一页</a>
+                {% end %}
+                {% if len(next_url) > 0 %}
+                <a href="/test?{{next_url}}">下一页</a>
+                {% end %}
+            </p>
+
+            <div class="row clearfix"> <!--footer-->
+                <div class="col-md-12 column">
+                    <p class="text-center" id="footer-text">
+                         © 2016 Pudding | All stories, art, and posts are the copyright of their respective authors
+                    </p>
+                    <p class="text-center" id="footer-s">
+                        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260133967'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1260133967%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
