@@ -10,10 +10,7 @@
 sh script/deploy_remote.sh online
 
 
-## 查看网站数据
 
-[点击查看](http://new.cnzz.com/v1/login.php?siteid=1260133967)
-查看密码：pudding
 
 ## 安装依赖
 ~~~shell
